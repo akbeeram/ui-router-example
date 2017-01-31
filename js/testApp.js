@@ -5,15 +5,21 @@
     'use strict';
 
     var routerApp = angular.module('testApp',['ui.router']);
-        routerApp.config(function($stateProvider,$urlRouterProvider){
+        routerApp.config(function($stateProvider,$urlRouterProvider,$locationProvider){
+            //$locationProvider.html5Mode(true);
             $urlRouterProvider.otherwise('/welcome');
+            localStorage.setItem('userInfo',{
+               name:'Anil',
+                email:'a@a.com',
+                token:'ASDFASDF'
+            });
             $stateProvider
                 .state('app',{
                     url:'',
                     abstract:true,
                     requireLogin:true,
                     controller:function($scope){
-
+                        $scope.userInfo = localStorage.getItem('userInfo');
                     },
                     views:{
                         '':{templateUrl:'partials/main.html'},
@@ -60,18 +66,3 @@
 
 
 }(angular));
-
-/* Displaying header, body and footer
-
- .state('welcome',{
- url:'/welcome',
- views:{
- '':{templateUrl:"partials/welcome.html"},
- //'header':{templateUrl:"partials/header.html"},
- //the above statement dosent display header in welcome
- //after adding @welcome is displays
- 'header@welcome':{templateUrl:"partials/header.html"},
- 'footer@welcome':{templateUrl:"partials/footer.html"}
- }
- })
- */
