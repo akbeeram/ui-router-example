@@ -6,7 +6,7 @@
 
     var routerApp = angular.module('testApp',['ui.router']);
         routerApp.config(function($stateProvider,$urlRouterProvider){
-            //$urlRouterProvider.otherwise('/welcome');
+            $urlRouterProvider.otherwise('/welcome');
             $stateProvider
                 .state('app',{
                     url:'',
@@ -45,7 +45,16 @@
                 })
                 .state('app.dash',{
                     url:'/dashboard',
-                    template:"dashboard sdf sdfdsf ads fs "
+                    templateUrl:"partials/dashboard.html",
+                    controller:function($scope,$state){
+                        $scope.click=function(){
+                            $state.go('app.read');
+                        }
+                    }
+                })
+                .state('app.read',{
+                    url:'/read',
+                    template:"This is read"
                 })
         });
 
