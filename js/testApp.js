@@ -9,12 +9,16 @@
             //$urlRouterProvider.otherwise('/welcome');
             $stateProvider
                 .state('app',{
-                    url:'/main',
-                    templateUrl:'partials/main.html',
+                    url:'',
                     abstract:true,
                     requireLogin:true,
                     controller:function($scope){
 
+                    },
+                    views:{
+                        '':{templateUrl:'partials/main.html'},
+                        'header@app':{templateUrl:"partials/header.html"},
+                        'footer@app':{templateUrl:"partials/footer.html"}
                     }
                 })
                 .state('welcome',{
