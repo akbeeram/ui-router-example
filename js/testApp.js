@@ -60,7 +60,29 @@
                 })
                 .state('app.read',{
                     url:'/read',
-                    template:"This is read"
+                    templateUrl:"partials/reader.html",
+                    controller:function($scope,$state){
+                        $scope.click=function(){
+                            $state.go('logout');
+                        }
+                    }
+                })
+                .state('logout',{
+                    url:'/logout',
+                    templateUrl:"partials/logout.html",
+                    controller:function($scope,$state,$timeout){
+                        $scope.secRem = 5;
+                        var timer = setInterval ( function(){
+                            $scope.secRem --;
+                            $scope.$apply();
+                            if($scope.secRem==5){
+                                clearInterval ( timer );
+                            }
+                        }, 1000 );
+                        $timeout(function(){
+                            $state.go('welcome');
+                        },5000);
+                    }
                 })
         });
 
