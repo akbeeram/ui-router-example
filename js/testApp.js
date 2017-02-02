@@ -23,7 +23,14 @@
                     },
                     views:{
                         '':{templateUrl:'partials/main.html'},
-                        'header@app':{templateUrl:"partials/header.html"},
+                        'header@app':{
+                            templateUrl:"partials/header.html",
+                            controller:function($scope){
+                                $scope.click=function(){
+                                    $state.go('app.read');
+                                }
+                            }
+                        },
                         'footer@app':{templateUrl:"partials/footer.html"}
                     }
                 })
@@ -32,9 +39,6 @@
                     requireLogin:false,
                     views:{
                         '':{templateUrl:"partials/welcome.html"},
-                        //'header':{templateUrl:"partials/header.html"},
-                        //the above statement dosent display header in welcome
-                        //after adding @welcome is displays
                         'header@welcome':{
                             templateUrl:"partials/header.html",
                             //controller:headerController
